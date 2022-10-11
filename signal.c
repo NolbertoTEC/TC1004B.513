@@ -2,9 +2,12 @@
 #include <signal.h>
 #include <unistd.h>
 
+int con;
+
 void holaMundo(int signalNumber){
     if(signalNumber == 10){
         printf("Es la señal 10\n");
+        con = 2;
     } else {
         printf("Es otra señal");
     }
@@ -18,7 +21,8 @@ int main(){
     signal(12,holaMundo);
     signal(10,holaMundo);
     signal(2,nomematas);
-    while(1){
+    con = 1;
+    while(con == 1){
         printf("Estoy trabajando \n");
         sleep(1);
     }
