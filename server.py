@@ -8,8 +8,13 @@ class S(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
         self._set_response()
+        if "/endencido" in self.path:
+            encendido = self.path.split("=")[1]
+            if encendido == '1':
+                print("encendido")
+            else:
+                print("apagado")
         self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
 
     def do_POST(self):
